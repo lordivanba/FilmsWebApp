@@ -1,0 +1,99 @@
+@page "/films"
+
+<PageTitle>Films</PageTitle>
+
+@using BlazorFilmsApp.Data.Models
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div>
+    <h2 class="display-6 text-center">Filmes</h2>
+</div>
+<hr>
+<div class="button_">
+    <a class="btn btn-success" href="film/form">REGISTRAR FILME</a>
+</div>
+
+
+@if (films == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container_table">
+        <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Director</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Puntuacion</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Año de publicación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var film in films)
+            {
+                <tr>
+                    <td scope="col">@film.Id</td>
+                    <td scope="col">@film.Titulo</td>
+                    <td scope="col">@film.Director</td>
+                    <td scope="col">@film.Genero</td>
+                    <td scope="col">@film.Puntuacion</td>
+                    <td scope="col">@film.Rating</td>
+                    <td scope="col">@film.YearPublicacion</td>
+                    <td scope="col">
+                        <button class="btn btn-outline-dark" @onclick="() => showFilm(film.Id)"><i><img
+                            src="https://img.icons8.com/material-outlined/24/000000/edit--v1.png" /></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}
+
+@code {
+    private readonly string api = "api/films";
+    private readonly string api_delete_film = "api/films/";
+    private IList<FilmModel>? films;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        films = await http.GetFromJsonAsync<IList<FilmModel>>(api);
+    }
+
+    private async Task Delete()
+    {
+        try
+        {
+            await http.DeleteAsync(api);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    void showFilm(int id)
+    {
+        nav.NavigateTo($"film/{id}");
+    }
+
+    @* async Task deleteFilm(int id){
+        try{
+        await http.DeleteAsync($"{api_delete_film}{id}");
+        StateHasChanged();
+        nav.NavigateTo("directors");
+        } catch (Exception e){
+        throw new Exception(e.Message);
+        }
+        } *@
+}

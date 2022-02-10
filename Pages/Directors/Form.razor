@@ -1,0 +1,141 @@
+@page "/director/form"
+@page "/director/{id:int}"
+
+@using BlazorFilmsApp.Data.Models
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient http
+@inject NavigationManager nav
+
+
+
+@if (Id == null)
+{
+    <div class="container w-50 mb-2">
+        <h4 class="display-6 text-center">Registrar director</h4>
+    </div>
+
+    <hr>
+        <EditForm class="container w-50" Model="@director">
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Nombre" type="text" class="form-control" id="nombre" placeholder="nombre">
+            </InputText>
+            <label for="titulo">Nombre</label>
+        </div>
+
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Apellido" type="text" class="form-control" id="apellido" placeholder="apellido">
+            </InputText>
+            <label for="apellido">Apellido</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Nacionalidad" type="text" class="form-control" id="nacionalidad" placeholder="nacionalidad">
+            </InputText>
+            <label for="nacionalidad">nacionalidad</label>
+        </div>
+
+        <div class="row g-2 ms-1">
+            <button @onclick="Save" type="submit" class="btn btn-success btn-large mt-4 me-4 col-auto">Guardar</button>
+         </div>
+
+    </EditForm>
+}
+else
+{
+    <div class="container w-50 mb-2">
+        <h4 class="display-6 text-center">@director.Nombre @director.Apellido</h4>
+    </div>
+
+    <hr>
+
+    <EditForm class="container w-50" Model="@director">
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Nombre" type="text" class="form-control" id="nombre" placeholder="nombre">
+            </InputText>
+            <label for="titulo">Nombre</label>
+        </div>
+
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Apellido" type="text" class="form-control" id="apellido" placeholder="apellido">
+            </InputText>
+            <label for="apellido">Apellido</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@director.Nacionalidad" type="text" class="form-control" id="nacionalidad" placeholder="nacionalidad">
+            </InputText>
+            <label for="nacionalidad">nacionalidad</label>
+        </div>
+
+        <div class="row g-2 ms-1">
+            <button @onclick="Update" type="submit" class="btn btn-primary btn-large mt-4 me-4 col-auto">Actualizar</button>
+            <button @onclick="Delete" type="submit" class="btn btn-danger btn-large mt-4 col-auto">Eliminar</button>
+         </div>
+
+    </EditForm>
+}
+
+
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    @* public DirectorModel? director { get; set; }
+     *@
+
+    DirectorModel director = new DirectorModel();
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != null)
+            director = await http.GetFromJsonAsync<DirectorModel>($"api/directors/{Id}");
+    }
+
+    private async Task Save()
+    {
+        try
+        {
+            await http.PostAsJsonAsync<DirectorModel>("api/directors", director);
+            nav.NavigateTo("/directors");
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    private async Task Update()
+    {
+        if (director != null)
+        {
+            try
+            {
+                await http.PutAsJsonAsync<DirectorModel>($"api/directors/{Id}", director);
+                nav.NavigateTo("directors");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+    }
+    private async Task Delete()
+    {
+        try
+        {
+            await http.DeleteAsync($"api/directors/{Id}");
+            StateHasChanged();
+            nav.NavigateTo("directors");
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+}

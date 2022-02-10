@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "uu/nl1xK3jua6+5MrVEkMIBLLiKTrrZYewZizhHMLPoqn6ekCWjcTgzbZCTFvHWwIa49N2H5pXcHI+HnCs9kNA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\viern\\Documents\\code\\dotnet\\BlazorFilmsApp\\BlazorFilmsApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\viern\\.nuget\\packages\\bootstrap\\5.1.3\\bootstrap.5.1.3.nupkg.sha512"
+  ],
+  "logs": []
+}

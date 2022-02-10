@@ -1,0 +1,70 @@
+@page "/directors"
+
+<PageTitle>Films</PageTitle>
+
+@using BlazorFilmsApp.Data.Models
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div>
+    <h2 class="display-6 text-center">Directores</h2>
+</div>
+
+<hr>
+
+<div class="button_">
+    <a class="btn btn-success" href="director/form">registar director</a>
+</div>
+
+@if (directors == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <section class="container_table">
+            <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Nacionalidad</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var director in directors)
+            {
+                <tr>
+                    <td scope="col">@director.Id</td>
+                    <td scope="col">@director.Nombre</td>
+                    <td scope="col">@director.Apellido</td>
+                    <td scope="col">@director.Nacionalidad</td>
+                    <td scope="col">
+                        <button class="btn btn-outline-dark" @onclick="() => showDirector(director.Id)"><i><img
+                            src="https://img.icons8.com/material-outlined/24/000000/edit--v1.png" /></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </section>
+}
+
+@code {
+    private readonly string api = "api/directors";
+    private IList<DirectorModel>? directors;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        directors = await http.GetFromJsonAsync<IList<DirectorModel>>(api);
+    }
+
+    void showDirector(int id){
+        nav.NavigateTo($"director/{id}");
+    }
+}

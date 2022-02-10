@@ -1,0 +1,84 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BlazorFilmsApp
+build_property.RootNamespace = BlazorFilmsApp
+build_property.ProjectDir = C:\Users\viern\Documents\code\dotnet\BlazorFilmsApp\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\viern\Documents\code\dotnet\BlazorFilmsApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Directors/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0b3JzXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Films/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlsbXNcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Films/Form.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlsbXNcRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Films/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlsbXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Films/Info.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlsbXNcSW5mby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Suma.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VtYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-pohl8uswur
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-u0ekuwx4o9
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viern/Documents/code/dotnet/BlazorFilmsApp/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

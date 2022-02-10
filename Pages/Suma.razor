@@ -1,0 +1,27 @@
+@page "/suma"
+
+<h2>Calculadora básica</h2>
+
+<div>
+
+    <input type="number" @bind-value="A">
+    +
+    <input type="number" @bind-value="B">
+    <button @onclick="Calcular">Sumar</button>
+</div>
+
+@if(Result != null){
+    <div>
+        <p>La suma de @A y @B es: @Result</p>
+    </div>
+} 
+
+@code{
+    public int? A { get; set; }
+    public int? B { get; set; }
+    public int? Result { get; set; }
+
+    void Calcular(){
+        Result = A + B;
+    }
+}

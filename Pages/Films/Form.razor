@@ -1,0 +1,248 @@
+@page "/film/form"
+@page "/film/{id:int}"
+
+@using BlazorFilmsApp.Data.Models
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient http
+@inject NavigationManager nav
+
+@if (Id == null)
+{
+    <div class="container w-50 mb-2">
+        <h4 class="display-6 text-center">Registrar filme</h4>
+    </div>
+
+    <hr>
+
+    <EditForm class="container_form container w-50" Model="@film">
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@film.Titulo" type="text" class="form-control" id="titulo" placeholder="titulo">
+            </InputText>
+            <label for="titulo">Titulo</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputSelect @bind-Value="@film.DirectorId" class="form-select" id="director" aria-label="Director">
+                <option selected>Selecciona el director</option>
+                @if (directors != null)
+                {
+                @foreach (var director in directors)
+                    {
+                    <option value="@director.Id">@director.Nombre @director.Apellido</option>
+                    }
+                }
+        </InputSelect>
+        <label for="director">Director</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <InputText @bind-Value="@film.Genero" type="text" class="form-control" id="genero" placeholder="Genero">
+        </InputText>
+        <label for="genero">Género</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <InputNumber @bind-Value="@film.Puntuacion" type="number" class="form-control" id="puntuacion"
+            placeholder="Puntuacion">
+        </InputNumber>
+        <label for="puntuacion">Puntuación</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <InputText @bind-Value="@film.Rating" type="text" class="form-control" id="rating" placeholder="Rating">
+        </InputText>
+        <label for="rating">Rating</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <InputText @bind-Value="@film.YearPublicacion" type="text" class="form-control" id="publicacion"
+            placeholder="Publicación">
+        </InputText>
+        <label for="publicacion">Publicación</label>
+    </div>
+
+    <div class="row g-2 ms-1">
+        <button @onclick="Save" type="submit" class="btn btn-success btn-large mt-4 me-4 col-auto">Guardar</button>
+    </div>
+</EditForm>
+}
+else
+{
+    <div class="container w-50 mb-2">
+        <h4 class="display-6 text-center">@film.Titulo (@film.YearPublicacion)</h4>
+    </div>
+
+    <hr>
+
+    <EditForm class="container w-50" Model="@film">
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@film.Titulo" type="text" class="form-control" id="titulo" placeholder="titulo">
+            </InputText>
+            <label for="titulo">Titulo</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputSelect @bind-Value="@film.DirectorId" class="form-select" id="director" aria-label="Director">
+                <option selected>Selecciona el director</option>
+                @if (directors != null)
+                {
+                @foreach (var director in directors)
+                    {
+                    <option value="@director.Id">@director.Nombre @director.Apellido</option>
+                    }
+                }
+            </InputSelect>
+            <label for="director">Director</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@film.Genero" type="text" class="form-control" id="genero" placeholder="Genero">
+            </InputText>
+            <label for="genero">Género</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputNumber @bind-Value="@film.Puntuacion" type="number" class="form-control" id="puntuacion"
+                placeholder="Puntuacion">
+            </InputNumber>
+            <label for="puntuacion">Puntuación</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@film.Rating" type="text" class="form-control" id="rating" placeholder="Rating">
+            </InputText>
+            <label for="rating">Rating</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="@film.YearPublicacion" type="text" class="form-control" id="publicacion"
+                placeholder="Publicación">
+            </InputText>
+            <label for="publicacion">Publicación</label>
+        </div>
+
+        <div class="row g-2 ms-1">
+            <button @onclick="Update" type="submit" class="btn btn-primary btn-large mt-4 me-4 col-auto">Actualizar</button>
+            <button @onclick="Delete" type="submit" class="btn btn-danger btn-large mt-4 col-auto">Eliminar</button>
+        </div>
+    </EditForm>
+    @* <PageTitle>Editar filme</PageTitle>
+        <h1>Editar @film.Titulo</h1>
+        <EditForm Model="@film">
+        <div>
+        <label for="">Titulo</label>
+        <InputText @bind-Value="@film.Titulo"></InputText>
+        </div>
+        <div>
+        <label for="">Director</label>
+        <InputSelect @bind-Value="@film.DirectorId">
+        <option selected value="@film.DirectorId">@film.Director</option>
+        @if (directors != null)
+        {
+        @foreach (var director in directors)
+        {
+        <option value="@director.Id">@director.Nombre @director.Apellido</option>
+        }
+        }
+        else
+        {
+        <p><em>Loading...</em></p>
+        }
+        </InputSelect>
+        </div>
+        <div>
+        <label for="">Genero</label>
+        <InputText @bind-Value="@film.Genero"></InputText>
+        </div>
+        <div>
+        <label for="">Puntuación</label>
+        <InputNumber @bind-Value="@film.Puntuacion"></InputNumber>
+        </div>
+        <div>
+        <label for="">Rating</label>
+        <InputText @bind-Value="@film.Rating"></InputText>
+        </div>
+        <div>
+        <label for="">Año de publicación</label>
+        <InputText @bind-Value="@film.YearPublicacion"></InputText>
+        </div>
+        <div>
+        <button clas="btn btn-success" @onclick="Update">Guardar</button>
+        </div>
+        </EditForm> *@
+
+}
+
+
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private readonly string api_directors = "api/directors";
+    private readonly string api_films = "api/films";
+    private readonly string api_delete_film = "api/films/";
+    private IList<DirectorModel>? directors;
+    FilmModel film = new FilmModel();
+    public FilmModel? oFilm { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        directors = await http.GetFromJsonAsync<IList<DirectorModel>>(api_directors);
+        if (Id != null)
+            film = await http.GetFromJsonAsync<FilmModel>($"{api_films}/{Id}");
+
+    }
+
+    @* protected override async Task OnParametersSetAsync()
+        {
+
+        } *@
+
+    private async Task Save()
+    {
+        try
+        {
+            await http.PostAsJsonAsync<FilmModel>(api_films, film);
+            nav.NavigateTo("/films");
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    private async Task Update()
+    {
+        if (film != null)
+        {
+            try
+            {
+                await http.PutAsJsonAsync<FilmModel>($"{api_films}/{Id}", film);
+                nav.NavigateTo("films");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+    }
+    private async Task Delete()
+    {
+        try
+        {
+            await http.DeleteAsync($"{api_delete_film}{Id}");
+            StateHasChanged();
+            nav.NavigateTo("directors");
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+}
